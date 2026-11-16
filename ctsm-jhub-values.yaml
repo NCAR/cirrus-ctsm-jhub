@@ -1,4 +1,6 @@
 singleuser:
+    cloudMetadata:
+        blockWithIptables: false
     lifecycleHooks:
         postStart:
             exec:
