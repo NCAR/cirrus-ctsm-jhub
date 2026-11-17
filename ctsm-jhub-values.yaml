@@ -13,14 +13,6 @@ singleuser:
             fsGroupChangePolicy: OnRootMismatch
             seccompProfile:
                 type: RuntimeDefault
-    extraContainerConfig:
-        securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-            allowPrivilegeEscalation: false
-            capabilities:
-                drop: ["ALL"]
     lifecycleHooks:
         postStart:
             exec:
@@ -69,6 +61,14 @@ ingress:
             - ctsm-jhub.k8s.ucar.edu
 hub:
     config:
+        KubeSpawner:
+            container_security_context:
+                runAsNonRoot: true
+                runAsUser: 1000
+                runAsGroup: 1000
+                allowPrivilegeEscalation: false
+                capabilities:
+                    drop: ["ALL"]
         JupyterHub:
             authenticator_class: nativeauthenticator.NativeAuthenticator
         Authenticator:
